@@ -55,3 +55,14 @@ span{
     font-weight: 500;
     padding: 10px 20px;
 }
+.navlist a:hover{
+    color: var(--hover-color);
+    text-shadow: 0 0 10px rgba(62, 112, 114, 0.6),
+    0 0 20px rgba(18,247,255,0.6),
+    0 0 30px rgba(18,247,255,0.6),
+    0 0 40px rgba(18,247,255,0.6),
+    0 0 70px rgba(18,247,255,0.6),
+    0 0 80px rgba(18,247,255,0.6),
+    0 0 100px rgba(18,247,255,0.6),
+    0 0 150px rgba(18,247,255,0.6);
+}
