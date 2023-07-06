@@ -14,6 +14,18 @@
 
 .visible {
   opacity: 1;
+  animation: colorChange 2s linear infinite;
+}
+
+@keyframes colorChange {
+  0% { color: red; }
+  25% { color: blue; }
+  50% { color: green; }
+  75% { color: orange; }
+  100% { color: purple; }
+}
+body {
+  background-color: black;
 }
 </style>
 </head>
@@ -47,4 +59,5 @@ for (let i = 0; i < spans.length; i++) {
 </script>
 </body>
 </html>
+
 
