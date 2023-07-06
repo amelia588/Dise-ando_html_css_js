@@ -2,62 +2,67 @@
 <html>
 <head>
 <style>
-.container {
-  text-align: center;
-  font-size: 40px;
-}
-
-.hidden {
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.visible {
-  opacity: 1;
-  animation: colorChange 2s linear infinite;
-}
-
-@keyframes colorChange {
-  0% { color: red; }
-  25% { color: blue; }
-  50% { color: green; }
-  75% { color: orange; }
-  100% { color: purple; }
-}
 body {
   background-color: black;
+  overflow: hidden;
+}
+
+.style-burst {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: burstAnimation 1s linear infinite;
+}
+
+@keyframes burstAnimation {
+  0% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(20);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <h1 id="birthdayText">Happy Birthday!</h1>
-</div>
-
 <script>
-const birthdayText = document.getElementById("birthdayText");
-const text = birthdayText.textContent;
-birthdayText.textContent = "";
-
-for (let i = 0; i < text.length; i++) {
-  const span = document.createElement("span");
-  span.textContent = text[i];
-  span.classList.add("hidden");
-  birthdayText.appendChild(span);
+// Función para generar un número aleatorio dentro de un rango
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
-const spans = birthdayText.querySelectorAll("span");
+// Función para generar un color aleatorio en formato RGB
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
-let delay = 0;
+// Crear estilos estallando en todo el body
+function createStyleBurst() {
+  const styleBurst = document.createElement("div");
+  styleBurst.classList.add("style-burst");
+  styleBurst.style.top = getRandomNumber(0, window.innerHeight) + "px";
+  styleBurst.style.left = getRandomNumber(0, window.innerWidth) + "px";
+  styleBurst.style.backgroundColor = getRandomColor();
+  document.body.appendChild(styleBurst);
 
-for (let i = 0; i < spans.length; i++) {
   setTimeout(() => {
-    spans[i].classList.add("visible");
-  }, delay);
-  delay += 200; // Ajusta este valor para cambiar la velocidad de aparición de las letras
+    styleBurst.remove();
+  }, 1000); // Ajusta este valor para cambiar la duración de la animación
 }
+
+// Generar estilos estallando cada cierto intervalo de tiempo
+setInterval(createStyleBurst, 500); // Ajusta este valor para cambiar la frecuencia de aparición de los estilos
 </script>
 </body>
 </html>
+
 
 
