@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.container {
+  text-align: center;
+  font-size: 40px;
+}
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.visible {
+  opacity: 1;
+  animation: colorChange 2s linear infinite;
+}
+
+@keyframes colorChange {
+  0% { color: red; }
+  25% { color: blue; }
+  50% { color: green; }
+  75% { color: orange; }
+  100% { color: purple; }
+
+  
+}
+body {
+  background-color: black;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 id="birthdayText">Happy Birthday!</h1>
+</div>
+
+<script>
+const birthdayText = document.getElementById("birthdayText");
+const text = birthdayText.textContent;
+birthdayText.textContent = "";
+
+for (let i = 0; i < text.length; i++) {
+  const span = document.createElement("span");
+  span.textContent = text[i];
+  span.classList.add("hidden");
+  birthdayText.appendChild(span);
+}
+
+const spans = birthdayText.querySelectorAll("span");
+
+let delay = 0;
+
+for (let i = 0; i < spans.length; i++) {
+  setTimeout(() => {
+    spans[i].classList.add("visible");
+  }, delay);
+  delay += 200; // Ajusta este valor para cambiar la velocidad de aparición de las letras
+}
+</script>
+</body>
+</html>
